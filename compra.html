@@ -389,16 +389,49 @@
             document.getElementById('purchaseForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
+                // Recopilar todos los datos del formulario
+                const formData = {
+                    spectacle: {
+                        id: document.getElementById('spectacle-select').value,
+                        name: document.getElementById('spectacle-select').selectedOptions[0].text
+                    },
+                    date: document.getElementById('date').value,
+                    time: document.getElementById('time').value,
+                    quantity: document.getElementById('quantity').value,
+                    seatType: document.getElementById('seat-type').value,
+                    customer: {
+                        name: document.getElementById('customerName').value,
+                        email: document.getElementById('customerEmail').value,
+                        phone: document.getElementById('customerPhone').value,
+                        id: document.getElementById('customerId').value
+                    },
+                    payment: {
+                        method: document.querySelector('input[name="paymentMethod"]:checked').value,
+                        cardNumber: document.getElementById('cardNumber').value,
+                        cardName: document.getElementById('cardName').value,
+                        cardExpiry: document.getElementById('cardExpiry').value
+                    },
+                    pricing: {
+                        subtotal: parseFloat(document.getElementById('subtotal').textContent.replace('$', '')),
+                        tax: parseFloat(document.getElementById('tax').textContent.replace('$', '')),
+                        total: parseFloat(document.getElementById('total').textContent.replace('$', ''))
+                    },
+                    orderDate: new Date().toISOString()
+                };
+                
+                // Guardar datos en localStorage
+                localStorage.setItem('purchaseData', JSON.stringify(formData));
+                
                 // Track purchase completion
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'purchase', {
                         transaction_id: 'TXN_' + Date.now(),
-                        value: parseFloat(document.getElementById('total').textContent.replace('$', '')),
+                        value: formData.pricing.total,
                         currency: 'USD',
                         items: [{
-                            item_id: document.getElementById('spectacle-select').value,
-                            item_name: document.getElementById('spectacle-select').selectedOptions[0].text,
-                            quantity: document.getElementById('quantity').value,
+                            item_id: formData.spectacle.id,
+                            item_name: formData.spectacle.name,
+                            quantity: formData.quantity,
                             price: getSeatPrice()
                         }]
                     });

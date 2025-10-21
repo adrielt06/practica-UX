@@ -312,30 +312,96 @@
     <script src="js/main.js"></script>
     
     <script>
-        // Generar datos de confirmación dinámicamente
+        // Cargar datos reales del usuario desde localStorage
         document.addEventListener('DOMContentLoaded', function() {
-            // Generar número de orden único
-            const orderNumber = 'TP-2024-' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-            document.getElementById('order-number').textContent = '#' + orderNumber;
+            // Obtener datos de la compra desde localStorage
+            const purchaseData = JSON.parse(localStorage.getItem('purchaseData'));
             
-            // Generar fecha actual
-            const today = new Date();
-            const showDate = new Date(today.getTime() + (5 * 24 * 60 * 60 * 1000)); // 5 días en el futuro
-            document.getElementById('show-date').textContent = showDate.toLocaleDateString('es-ES', {
+            if (purchaseData) {
+                // Mostrar datos del espectáculo
+                document.getElementById('spectacle-name').textContent = purchaseData.spectacle.name;
+                document.getElementById('show-date').textContent = formatDate(purchaseData.date);
+                document.getElementById('show-time').textContent = purchaseData.time;
+                document.getElementById('show-venue').textContent = getVenueName(purchaseData.seatType);
+                
+                // Mostrar detalles de la compra
+                const orderNumber = 'TP-2024-' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+                document.getElementById('order-number').textContent = '#' + orderNumber;
+                document.getElementById('ticket-quantity').textContent = purchaseData.quantity + ' entrada(s)';
+                document.getElementById('seat-type').textContent = getSeatTypeName(purchaseData.seatType);
+                document.getElementById('total-paid').textContent = '$' + purchaseData.pricing.total.toFixed(2);
+                
+                // Mostrar información del cliente
+                document.getElementById('customer-name').textContent = purchaseData.customer.name;
+                document.getElementById('customer-email').textContent = purchaseData.customer.email;
+                document.getElementById('customer-phone').textContent = purchaseData.customer.phone;
+                
+                // Mostrar información de pago
+                document.getElementById('payment-method').textContent = getPaymentMethodName(purchaseData.payment.method);
+                if (purchaseData.payment.cardNumber) {
+                    const last4 = purchaseData.payment.cardNumber.slice(-4);
+                    document.getElementById('card-last4').textContent = '**** ' + last4;
+                } else {
+                    document.getElementById('card-last4').textContent = 'N/A';
+                }
+                document.getElementById('payment-date').textContent = formatDate(purchaseData.orderDate);
+                
+                // Track purchase completion con datos reales
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'purchase_completed', {
+                        event_category: 'ecommerce',
+                        event_label: 'ticket_purchase',
+                        value: purchaseData.pricing.total,
+                        transaction_id: orderNumber
+                    });
+                }
+                
+                // Limpiar datos después de mostrar (opcional)
+                // localStorage.removeItem('purchaseData');
+            } else {
+                // Si no hay datos, mostrar mensaje de error o redirigir
+                console.warn('No se encontraron datos de compra');
+                // Opcional: redirigir a la página de compra
+                // window.location.href = 'compra.html';
+            }
+        });
+        
+        // Funciones auxiliares
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', {
                 day: 'numeric',
                 month: 'long',
                 year: 'numeric'
             });
-            
-            // Track purchase completion
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'purchase_completed', {
-                    event_category: 'ecommerce',
-                    event_label: 'ticket_purchase',
-                    value: 81.20
-                });
-            }
-        });
+        }
+        
+        function getVenueName(seatType) {
+            const venues = {
+                'general': 'Sala Principal',
+                'premium': 'Sala Principal',
+                'vip': 'Sala Principal'
+            };
+            return venues[seatType] || 'Sala Principal';
+        }
+        
+        function getSeatTypeName(seatType) {
+            const types = {
+                'general': 'General',
+                'premium': 'Premium',
+                'vip': 'VIP'
+            };
+            return types[seatType] || seatType;
+        }
+        
+        function getPaymentMethodName(method) {
+            const methods = {
+                'credit': 'Tarjeta de Crédito',
+                'debit': 'Tarjeta de Débito',
+                'paypal': 'PayPal'
+            };
+            return methods[method] || method;
+        }
     </script>
 </body>
 </html>
