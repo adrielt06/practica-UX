@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartelera - Teatro Principal</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                🎭 Teatro Principal
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="cartelera.html">Cartelera</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="salas.html">Salas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="registro.html">Registro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="section-title">Cartelera Completa</h1>
+                    <p class="lead">Descubre todos nuestros espectáculos y encuentra el perfecto para ti</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros y Búsqueda -->
+    <section class="py-3 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search-spectacles" placeholder="Buscar espectáculos...">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="btn-group w-100" role="group">
+                        <button type="button" class="btn btn-outline-primary filter-btn active" data-filter="all">Todos</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn" data-filter="drama">Drama</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn" data-filter="comedia">Comedia</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn" data-filter="musical">Musical</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Espectáculos -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row" id="spectacles-container">
+                <!-- Espectáculo 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="spectacle-card" data-category="drama">
+                        <img src="https://via.placeholder.com/400x200/8B0000/FFFFFF?text=Hamlet" alt="Hamlet" class="spectacle-image">
+                        <div class="spectacle-content">
+                            <h3 class="spectacle-title">Hamlet</h3>
+                            <p class="spectacle-theme">Drama Clásico</p>
+                            <p class="spectacle-cast">Elenco: Juan Pérez, María García, Carlos López</p>
+                            <p class="text-muted">Una obra maestra de Shakespeare que explora temas de venganza, locura y moralidad.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">Sala Principal</span>
+                                <span class="text-success fw-bold">$25.00</span>
+                            </div>
+                            <button class="btn btn-primary-custom w-100 mt-3 btn-buy-tickets" 
+                                    data-spectacle-id="hamlet" 
+                                    data-spectacle-name="Hamlet">
+                                Comprar Entradas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espectáculo 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="spectacle-card" data-category="comedia">
+                        <img src="https://via.placeholder.com/400x200/DAA520/000000?text=El+Enfermo+Imaginario" alt="El Enfermo Imaginario" class="spectacle-image">
+                        <div class="spectacle-content">
+                            <h3 class="spectacle-title">El Enfermo Imaginario</h3>
+                            <p class="spectacle-theme">Comedia Clásica</p>
+                            <p class="spectacle-cast">Elenco: Ana Martínez, Pedro Rodríguez, Laura Sánchez</p>
+                            <p class="text-muted">Una comedia de Molière que satiriza la hipocondría y la medicina de la época.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-warning text-dark">Sala Experimental</span>
+                                <span class="text-success fw-bold">$20.00</span>
+                            </div>
+                            <button class="btn btn-primary-custom w-100 mt-3 btn-buy-tickets" 
+                                    data-spectacle-id="enfermo" 
+                                    data-spectacle-name="El Enfermo Imaginario">
+                                Comprar Entradas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espectáculo 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="spectacle-card" data-category="musical">
+                        <img src="https://via.placeholder.com/400x200/000000/FFFFFF?text=Los+Miserables" alt="Los Miserables" class="spectacle-image">
+                        <div class="spectacle-content">
+                            <h3 class="spectacle-title">Los Miserables</h3>
+                            <p class="spectacle-theme">Musical</p>
+                            <p class="spectacle-cast">Elenco: Roberto Díaz, Carmen Vega, Miguel Torres</p>
+                            <p class="text-muted">Un musical épico basado en la novela de Victor Hugo sobre la lucha por la justicia social.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">Sala Principal</span>
+                                <span class="text-success fw-bold">$35.00</span>
+                            </div>
+                            <button class="btn btn-primary-custom w-100 mt-3 btn-buy-tickets" 
+                                    data-spectacle-id="miserables" 
+                                    data-spectacle-name="Los Miserables">
+                                Comprar Entradas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espectáculo 4 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="spectacle-card" data-category="drama">
+                        <img src="https://via.placeholder.com/400x200/8B0000/FFFFFF?text=La+Casa+de+Bernarda+Alba" alt="La Casa de Bernarda Alba" class="spectacle-image">
+                        <div class="spectacle-content">
+                            <h3 class="spectacle-title">La Casa de Bernarda Alba</h3>
+                            <p class="spectacle-theme">Drama Contemporáneo</p>
+                            <p class="spectacle-cast">Elenco: Elena Ruiz, Sofía Morales, Isabel Fernández</p>
+                            <p class="text-muted">Una obra de García Lorca que retrata la opresión femenina en la España rural.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-success">Sala Íntima</span>
+                                <span class="text-success fw-bold">$18.00</span>
+                            </div>
+                            <button class="btn btn-primary-custom w-100 mt-3 btn-buy-tickets" 
+                                    data-spectacle-id="bernarda" 
+                                    data-spectacle-name="La Casa de Bernarda Alba">
+                                Comprar Entradas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espectáculo 5 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="spectacle-card" data-category="comedia">
+                        <img src="https://via.placeholder.com/400x200/DAA520/000000?text=El+Gran+Dictador" alt="El Gran Dictador" class="spectacle-image">
+                        <div class="spectacle-content">
+                            <h3 class="spectacle-title">El Gran Dictador</h3>
+                            <p class="spectacle-theme">Comedia Satírica</p>
+                            <p class="spectacle-cast">Elenco: David Moreno, Patricia Jiménez, Antonio Ruiz</p>
+                            <p class="text-muted">Una sátira política que critica el autoritarismo y la manipulación del poder.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-warning text-dark">Sala Experimental</span>
+                                <span class="text-success fw-bold">$22.00</span>
+                            </div>
+                            <button class="btn btn-primary-custom w-100 mt-3 btn-buy-tickets" 
+                                    data-spectacle-id="dictador" 
+                                    data-spectacle-name="El Gran Dictador">
+                                Comprar Entradas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espectáculo 6 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="spectacle-card" data-category="musical">
+                        <img src="https://via.placeholder.com/400x200/000000/FFFFFF?text=West+Side+Story" alt="West Side Story" class="spectacle-image">
+                        <div class="spectacle-content">
+                            <h3 class="spectacle-title">West Side Story</h3>
+                            <p class="spectacle-theme">Musical Romántico</p>
+                            <p class="spectacle-cast">Elenco: Javier López, Natalia Herrera, Diego Castro</p>
+                            <p class="text-muted">Un musical moderno que adapta Romeo y Julieta en el contexto de las pandillas de Nueva York.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">Sala Principal</span>
+                                <span class="text-success fw-bold">$30.00</span>
+                            </div>
+                            <button class="btn btn-primary-custom w-100 mt-3 btn-buy-tickets" 
+                                    data-spectacle-id="westside" 
+                                    data-spectacle-name="West Side Story">
+                                Comprar Entradas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espectáculo 7 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="spectacle-card" data-category="drama">
+                        <img src="https://via.placeholder.com/400x200/8B0000/FFFFFF?text=Macbeth" alt="Macbeth" class="spectacle-image">
+                        <div class="spectacle-content">
+                            <h3 class="spectacle-title">Macbeth</h3>
+                            <p class="spectacle-theme">Tragedia Clásica</p>
+                            <p class="spectacle-cast">Elenco: Fernando Silva, Andrea Vega, Luis Mendoza</p>
+                            <p class="text-muted">La tragedia de Shakespeare sobre la ambición desmedida y sus consecuencias.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">Sala Principal</span>
+                                <span class="text-success fw-bold">$28.00</span>
+                            </div>
+                            <button class="btn btn-primary-custom w-100 mt-3 btn-buy-tickets" 
+                                    data-spectacle-id="macbeth" 
+                                    data-spectacle-name="Macbeth">
+                                Comprar Entradas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espectáculo 8 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="spectacle-card" data-category="comedia">
+                        <img src="https://via.placeholder.com/400x200/DAA520/000000?text=La+Comedia+de+los+Errores" alt="La Comedia de los Errores" class="spectacle-image">
+                        <div class="spectacle-content">
+                            <h3 class="spectacle-title">La Comedia de los Errores</h3>
+                            <p class="spectacle-theme">Comedia de Enredos</p>
+                            <p class="spectacle-cast">Elenco: Ricardo Peña, Claudia Torres, Manuel Herrera</p>
+                            <p class="text-muted">Una comedia de Shakespeare llena de confusiones y malentendidos cómicos.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-success">Sala Íntima</span>
+                                <span class="text-success fw-bold">$20.00</span>
+                            </div>
+                            <button class="btn btn-primary-custom w-100 mt-3 btn-buy-tickets" 
+                                    data-spectacle-id="errores" 
+                                    data-spectacle-name="La Comedia de los Errores">
+                                Comprar Entradas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Espectáculo 9 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="spectacle-card" data-category="musical">
+                        <img src="https://via.placeholder.com/400x200/000000/FFFFFF?text=El+Fantasma+de+la+Opera" alt="El Fantasma de la Ópera" class="spectacle-image">
+                        <div class="spectacle-content">
+                            <h3 class="spectacle-title">El Fantasma de la Ópera</h3>
+                            <p class="spectacle-theme">Musical Gótico</p>
+                            <p class="spectacle-cast">Elenco: Victoria Morales, Alejandro Ruiz, Carmen Díaz</p>
+                            <p class="text-muted">Un musical romántico y misterioso sobre el amor imposible en la Ópera de París.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">Sala Principal</span>
+                                <span class="text-success fw-bold">$40.00</span>
+                            </div>
+                            <button class="btn btn-primary-custom w-100 mt-3 btn-buy-tickets" 
+                                    data-spectacle-id="fantasma" 
+                                    data-spectacle-name="El Fantasma de la Ópera">
+                                Comprar Entradas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h5 class="footer-title">Teatro Principal</h5>
+                    <p>El mejor teatro de la ciudad, ofreciendo espectáculos de calidad desde 1970.</p>
+                    <p><strong>Dirección:</strong> Av. Principal 123, Centro Histórico</p>
+                    <p><strong>Teléfono:</strong> (555) 123-4567</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="footer-title">Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="cartelera.html" class="footer-link">Cartelera</a></li>
+                        <li><a href="salas.html" class="footer-link">Nuestras Salas</a></li>
+                        <li><a href="registro.html" class="footer-link">Registro</a></li>
+                        <li><a href="contacto.html" class="footer-link">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="footer-title">Síguenos</h5>
+                    <p>Mantente al día con nuestras últimas producciones</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="footer-link">Facebook</a>
+                        <a href="#" class="footer-link">Instagram</a>
+                        <a href="#" class="footer-link">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2024 Teatro Principal. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

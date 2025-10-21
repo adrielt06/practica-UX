@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Entradas - Teatro Principal</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                🎭 Teatro Principal
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cartelera.html">Cartelera</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="salas.html">Salas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="registro.html">Registro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="section-title">Compra de Entradas</h1>
+                    <p class="lead">Completa tu compra de manera segura y rápida</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Compra -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-body p-5">
+                            <form id="purchaseForm" novalidate>
+                                <!-- Selección de Espectáculo -->
+                                <div class="mb-4">
+                                    <h4 class="text-primary mb-3">1. Selecciona tu Espectáculo</h4>
+                                    <div class="mb-3">
+                                        <label for="spectacle-select" class="form-label">Espectáculo *</label>
+                                        <select class="form-select" id="spectacle-select" name="spectacle" required>
+                                            <option value="">Seleccionar espectáculo...</option>
+                                            <option value="hamlet">Hamlet - Drama Clásico</option>
+                                            <option value="enfermo">El Enfermo Imaginario - Comedia Clásica</option>
+                                            <option value="miserables">Los Miserables - Musical</option>
+                                            <option value="bernarda">La Casa de Bernarda Alba - Drama Contemporáneo</option>
+                                            <option value="dictador">El Gran Dictador - Comedia Satírica</option>
+                                            <option value="westside">West Side Story - Musical Romántico</option>
+                                            <option value="macbeth">Macbeth - Tragedia Clásica</option>
+                                            <option value="errores">La Comedia de los Errores - Comedia de Enredos</option>
+                                            <option value="fantasma">El Fantasma de la Ópera - Musical Gótico</option>
+                                        </select>
+                                    </div>
+                                    <div id="spectacle-name-display" class="alert alert-info" style="display: none;">
+                                        <strong>Espectáculo seleccionado:</strong> <span id="selected-spectacle-name"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Fecha y Cantidad -->
+                                <div class="mb-4">
+                                    <h4 class="text-primary mb-3">2. Fecha y Cantidad</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="date" class="form-label">Fecha de la Función *</label>
+                                            <input type="date" class="form-control" id="date" name="date" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="time" class="form-label">Horario *</label>
+                                            <select class="form-select" id="time" name="time" required>
+                                                <option value="">Seleccionar horario...</option>
+                                                <option value="19:00">7:00 PM</option>
+                                                <option value="20:30">8:30 PM</option>
+                                                <option value="22:00">10:00 PM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="quantity" class="form-label">Cantidad de Entradas *</label>
+                                            <select class="form-select" id="quantity" name="quantity" required>
+                                                <option value="">Seleccionar cantidad...</option>
+                                                <option value="1">1 entrada</option>
+                                                <option value="2">2 entradas</option>
+                                                <option value="3">3 entradas</option>
+                                                <option value="4">4 entradas</option>
+                                                <option value="5">5 entradas</option>
+                                                <option value="6">6 entradas</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="seat-type" class="form-label">Tipo de Asiento *</label>
+                                            <select class="form-select" id="seat-type" name="seatType" required>
+                                                <option value="">Seleccionar tipo...</option>
+                                                <option value="general">General - $25.00</option>
+                                                <option value="premium">Premium - $35.00</option>
+                                                <option value="vip">VIP - $50.00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Información Personal -->
+                                <div class="mb-4">
+                                    <h4 class="text-primary mb-3">3. Información Personal</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="customerName" class="form-label">Nombre Completo *</label>
+                                            <input type="text" class="form-control" id="customerName" name="customerName" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="customerEmail" class="form-label">Correo Electrónico *</label>
+                                            <input type="email" class="form-control" id="customerEmail" name="customerEmail" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="customerPhone" class="form-label">Teléfono *</label>
+                                            <input type="tel" class="form-control" id="customerPhone" name="customerPhone" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="customerId" class="form-label">ID de Cliente (opcional)</label>
+                                            <input type="text" class="form-control" id="customerId" name="customerId" placeholder="Si eres miembro">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Método de Pago -->
+                                <div class="mb-4">
+                                    <h4 class="text-primary mb-3">4. Método de Pago</h4>
+                                    <div class="mb-3">
+                                        <label class="form-label">Selecciona tu método de pago *</label>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="credit" required>
+                                                    <label class="form-check-label" for="creditCard">
+                                                        <i class="fas fa-credit-card"></i> Tarjeta de Crédito
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="paymentMethod" id="debitCard" value="debit" required>
+                                                    <label class="form-check-label" for="debitCard">
+                                                        <i class="fas fa-credit-card"></i> Tarjeta de Débito
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paypal" value="paypal" required>
+                                                    <label class="form-check-label" for="paypal">
+                                                        <i class="fab fa-paypal"></i> PayPal
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Información de Tarjeta (se muestra si se selecciona tarjeta) -->
+                                    <div id="cardInfo" style="display: none;">
+                                        <div class="row">
+                                            <div class="col-md-8 mb-3">
+                                                <label for="cardNumber" class="form-label">Número de Tarjeta *</label>
+                                                <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="cardExpiry" class="form-label">Fecha de Vencimiento *</label>
+                                                <input type="text" class="form-control" id="cardExpiry" name="cardExpiry" placeholder="MM/AA">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="cardName" class="form-label">Nombre en la Tarjeta *</label>
+                                                <input type="text" class="form-control" id="cardName" name="cardName">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="cardCvv" class="form-label">CVV *</label>
+                                                <input type="text" class="form-control" id="cardCvv" name="cardCvv" placeholder="123">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Términos y Condiciones -->
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                                        <label class="form-check-label" for="terms">
+                                            Acepto los <a href="#" class="text-primary">términos y condiciones</a> y la <a href="#" class="text-primary">política de cancelación</a> *
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary-custom btn-lg">
+                                        <i class="fas fa-shopping-cart"></i> Completar Compra
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen de Compra -->
+                <div class="col-lg-4">
+                    <div class="card shadow-lg border-0 sticky-top" style="top: 100px;">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-receipt"></i> Resumen de Compra</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="purchase-summary">
+                                <p class="text-muted">Selecciona un espectáculo para ver el resumen</p>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="d-flex justify-content-between">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>IVA (16%):</span>
+                                <span id="tax">$0.00</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between fw-bold fs-5">
+                                <span>Total:</span>
+                                <span id="total" class="text-primary">$0.00</span>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-shield-alt"></i> Pago 100% seguro
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Información Adicional -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="text-center">
+                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-shield-alt fa-lg"></i>
+                        </div>
+                        <h5>Pago Seguro</h5>
+                        <p class="text-muted">Todas las transacciones están protegidas con encriptación SSL</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="text-center">
+                        <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-undo fa-lg"></i>
+                        </div>
+                        <h5>Política de Cancelación</h5>
+                        <p class="text-muted">Puedes cancelar hasta 24 horas antes del espectáculo</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="text-center">
+                        <div class="bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-mobile-alt fa-lg"></i>
+                        </div>
+                        <h5>Entradas Digitales</h5>
+                        <p class="text-muted">Recibe tus entradas por email y móvil</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h5 class="footer-title">Teatro Principal</h5>
+                    <p>El mejor teatro de la ciudad, ofreciendo espectáculos de calidad desde 1970.</p>
+                    <p><strong>Dirección:</strong> Av. Principal 123, Centro Histórico</p>
+                    <p><strong>Teléfono:</strong> (555) 123-4567</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="footer-title">Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="cartelera.html" class="footer-link">Cartelera</a></li>
+                        <li><a href="salas.html" class="footer-link">Nuestras Salas</a></li>
+                        <li><a href="registro.html" class="footer-link">Registro</a></li>
+                        <li><a href="contacto.html" class="footer-link">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="footer-title">Síguenos</h5>
+                    <p>Mantente al día con nuestras últimas producciones</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="footer-link">Facebook</a>
+                        <a href="#" class="footer-link">Instagram</a>
+                        <a href="#" class="footer-link">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2024 Teatro Principal. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Funcionalidad específica para la página de compra
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar datos de espectáculo desde URL
+            loadSpectacleData();
+            
+            // Mostrar/ocultar información de tarjeta
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            const cardInfo = document.getElementById('cardInfo');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    if (this.value === 'credit' || this.value === 'debit') {
+                        cardInfo.style.display = 'block';
+                    } else {
+                        cardInfo.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Actualizar resumen cuando cambien los valores
+            const formInputs = document.querySelectorAll('#purchaseForm input, #purchaseForm select');
+            formInputs.forEach(input => {
+                input.addEventListener('change', updatePurchaseSummary);
+            });
+            
+            // Manejar envío del formulario
+            document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Track purchase completion
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'purchase', {
+                        transaction_id: 'TXN_' + Date.now(),
+                        value: parseFloat(document.getElementById('total').textContent.replace('$', '')),
+                        currency: 'USD',
+                        items: [{
+                            item_id: document.getElementById('spectacle-select').value,
+                            item_name: document.getElementById('spectacle-select').selectedOptions[0].text,
+                            quantity: document.getElementById('quantity').value,
+                            price: getSeatPrice()
+                        }]
+                    });
+                }
+                
+                // Redirigir a confirmación
+                window.location.href = 'confirmacion.html';
+            });
+        });
+        
+        function updatePurchaseSummary() {
+            const spectacleSelect = document.getElementById('spectacle-select');
+            const quantity = parseInt(document.getElementById('quantity').value) || 0;
+            const seatType = document.getElementById('seat-type').value;
+            
+            if (spectacleSelect.value && quantity > 0 && seatType) {
+                const pricePerTicket = getSeatPrice();
+                const subtotal = quantity * pricePerTicket;
+                const tax = subtotal * 0.16;
+                const total = subtotal + tax;
+                
+                document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+                document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+                
+                // Actualizar resumen
+                const summary = document.getElementById('purchase-summary');
+                summary.innerHTML = `
+                    <div class="mb-2">
+                        <strong>${spectacleSelect.selectedOptions[0].text}</strong>
+                    </div>
+                    <div class="mb-1">
+                        <small class="text-muted">${quantity} entrada(s) - ${seatType}</small>
+                    </div>
+                    <div class="mb-1">
+                        <small class="text-muted">Precio por entrada: $${pricePerTicket.toFixed(2)}</small>
+                    </div>
+                `;
+            }
+        }
+        
+        function getSeatPrice() {
+            const seatType = document.getElementById('seat-type').value;
+            const prices = {
+                'general': 25.00,
+                'premium': 35.00,
+                'vip': 50.00
+            };
+            return prices[seatType] || 0;
+        }
+    </script>
+</body>
+</html>

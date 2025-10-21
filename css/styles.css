@@ -1,0 +1,289 @@
+/* Teatro Mockup - Estilos Globales */
+
+:root {
+  --primary-color: #8B0000; /* Rojo oscuro teatral */
+  --secondary-color: #DAA520; /* Dorado */
+  --accent-color: #000000; /* Negro */
+  --light-bg: #F5F5F5;
+  --text-dark: #333333;
+  --text-light: #FFFFFF;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--light-bg);
+}
+
+/* Navbar personalizada */
+.navbar-custom {
+  background: linear-gradient(135deg, var(--primary-color), #A52A2A);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--text-light) !important;
+}
+
+.nav-link {
+  color: var(--text-light) !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--secondary-color) !important;
+}
+
+/* Hero section */
+.hero-section {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+              url('https://via.placeholder.com/1200x400/8B0000/FFFFFF?text=Teatro+Principal');
+  background-size: cover;
+  background-position: center;
+  color: var(--text-light);
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+/* Cards de espectáculos */
+.spectacle-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.spectacle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.spectacle-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.spectacle-content {
+  padding: 1.5rem;
+}
+
+.spectacle-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.spectacle-theme {
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.spectacle-cast {
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Botones */
+.btn-primary-custom {
+  background: linear-gradient(45deg, var(--primary-color), #A52A2A);
+  border: none;
+  color: var(--text-light);
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+  background: linear-gradient(45deg, #A52A2A, var(--primary-color));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+  color: var(--text-light);
+}
+
+.btn-secondary-custom {
+  background: var(--secondary-color);
+  border: none;
+  color: var(--accent-color);
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary-custom:hover {
+  background: #B8860B;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+  color: var(--accent-color);
+}
+
+/* Formularios */
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.25);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Footer */
+.footer-custom {
+  background: var(--accent-color);
+  color: var(--text-light);
+  padding: 3rem 0 1rem;
+  margin-top: 4rem;
+}
+
+.footer-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
+.footer-link {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--secondary-color);
+}
+
+/* Secciones */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--secondary-color);
+}
+
+/* Sala cards */
+.sala-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.sala-card:hover {
+  transform: translateY(-5px);
+}
+
+.sala-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.sala-content {
+  padding: 2rem;
+}
+
+.sala-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.sala-capacity {
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .spectacle-content {
+    padding: 1rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Success/Error messages */
+.alert-custom {
+  border-radius: 10px;
+  border: none;
+  font-weight: 500;
+}
+
+.alert-success-custom {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+}
+
+.alert-danger-custom {
+  background: linear-gradient(45deg, #dc3545, #e74c3c);
+  color: white;
+}
