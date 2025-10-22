@@ -363,7 +363,7 @@
         // Funcionalidad específica para la página de compra
         document.addEventListener('DOMContentLoaded', function() {
             // Cargar datos de espectáculo desde URL
-            loadSpectacleData();
+            loadSpectacleDataFromURL();
             
             // Mostrar/ocultar información de tarjeta
             const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
@@ -481,6 +481,33 @@
                 'vip': 50.00
             };
             return prices[seatType] || 0;
+        }
+        
+        // Cargar datos de espectáculo desde URL
+        function loadSpectacleDataFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const spectacleId = urlParams.get('spectacle');
+            const spectacleName = urlParams.get('name');
+            
+            if (spectacleId && spectacleName) {
+                // Seleccionar el espectáculo en el dropdown
+                const spectacleSelect = document.getElementById('spectacle-select');
+                if (spectacleSelect) {
+                    spectacleSelect.value = spectacleId;
+                    
+                    // Mostrar información del espectáculo seleccionado
+                    const spectacleNameDisplay = document.getElementById('spectacle-name-display');
+                    const selectedSpectacleName = document.getElementById('selected-spectacle-name');
+                    
+                    if (spectacleNameDisplay && selectedSpectacleName) {
+                        selectedSpectacleName.textContent = spectacleName;
+                        spectacleNameDisplay.style.display = 'block';
+                    }
+                    
+                    // Trigger change event para actualizar el resumen
+                    spectacleSelect.dispatchEvent(new Event('change'));
+                }
+            }
         }
     </script>
 </body>
