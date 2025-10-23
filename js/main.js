@@ -83,26 +83,54 @@ function validateForm(form) {
   let isValid = true;
   const requiredFields = form.querySelectorAll('[required]');
   
+  // Limpiar errores previos
   requiredFields.forEach(field => {
-    if (!field.value.trim()) {
-      showFieldError(field, 'Este campo es obligatorio');
-      isValid = false;
-    } else {
-      clearFieldError(field);
-    }
-    
-    // Validación específica por tipo
-    if (field.type === 'email' && field.value) {
-      if (!isValidEmail(field.value)) {
-        showFieldError(field, 'Ingrese un email válido');
-        isValid = false;
+    clearFieldError(field);
+  });
+  
+  // Verificar si se seleccionó método de pago con tarjeta
+  const selectedPaymentMethod = form.querySelector('input[name="paymentMethod"]:checked');
+  const isCardPayment = selectedPaymentMethod && (selectedPaymentMethod.value === 'credit' || selectedPaymentMethod.value === 'debit');
+  
+  requiredFields.forEach(field => {
+    // Solo validar campos de tarjeta si se seleccionó pago con tarjeta
+    if (field.id === 'cardNumber' || field.id === 'cardExpiry' || field.id === 'cardName' || field.id === 'cardCvv') {
+      if (!isCardPayment) {
+        return; // Saltar validación si no es pago con tarjeta
       }
     }
     
-    if (field.type === 'tel' && field.value) {
-      if (!isValidPhone(field.value)) {
-        showFieldError(field, 'Ingrese un teléfono válido');
+    // Validación especial para checkbox
+    if (field.type === 'checkbox') {
+      if (!field.checked) {
+        showFieldError(field, 'Debe aceptar los términos y condiciones');
         isValid = false;
+      }
+    } else if (!field.value.trim()) {
+      showFieldError(field, 'Este campo es obligatorio');
+      isValid = false;
+    } else {
+      // Validación específica por tipo
+      if (field.type === 'email' && field.value) {
+        if (!isValidEmail(field.value)) {
+          showFieldError(field, 'Ingrese un email válido');
+          isValid = false;
+        }
+      }
+      
+      if (field.type === 'tel' && field.value) {
+        if (!isValidPhone(field.value)) {
+          showFieldError(field, 'Ingrese un teléfono válido');
+          isValid = false;
+        }
+      }
+      
+      // Validación específica para CVV
+      if (field.id === 'cardCvv' && field.value) {
+        if (field.value.length !== 3) {
+          showFieldError(field, 'El CVV debe tener 3 dígitos');
+          isValid = false;
+        }
       }
     }
   });

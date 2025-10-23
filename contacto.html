@@ -70,8 +70,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="card shadow-lg border-0">
-                        <div class="card-body p-5">
+                    <div class="form-card">
+                        <div class="card-body">
                             <h3 class="text-primary mb-4">Envíanos un Mensaje</h3>
                             <form id="contactForm" novalidate>
                                 <div class="row">
@@ -376,6 +376,11 @@
         // Manejar envío del formulario de contacto
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Validar formulario usando la función global
+            if (!validateForm(this)) {
+                return; // No continuar si hay errores
+            }
             
             // Track contact form submission
             if (typeof gtag !== 'undefined') {

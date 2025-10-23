@@ -70,12 +70,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="card shadow-lg border-0">
-                        <div class="card-body p-5">
+                    <div class="form-card">
+                        <div class="card-body">
                             <form id="purchaseForm" novalidate>
                                 <!-- Selección de Espectáculo -->
-                                <div class="mb-4">
-                                    <h4 class="text-primary mb-3">1. Selecciona tu Espectáculo</h4>
+                                <div class="form-section">
+                                    <h5>1. Selecciona tu Espectáculo</h5>
                                     <div class="mb-3">
                                         <label for="spectacle-select" class="form-label">Espectáculo *</label>
                                         <select class="form-select" id="spectacle-select" name="spectacle" required>
@@ -97,8 +97,8 @@
                                 </div>
 
                                 <!-- Fecha y Cantidad -->
-                                <div class="mb-4">
-                                    <h4 class="text-primary mb-3">2. Fecha y Cantidad</h4>
+                                <div class="form-section">
+                                    <h5>2. Fecha y Cantidad</h5>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="date" class="form-label">Fecha de la Función *</label>
@@ -131,17 +131,17 @@
                                             <label for="seat-type" class="form-label">Tipo de Asiento *</label>
                                             <select class="form-select" id="seat-type" name="seatType" required>
                                                 <option value="">Seleccionar tipo...</option>
-                                                <option value="general">General - $25.00</option>
-                                                <option value="premium">Premium - $35.00</option>
-                                                <option value="vip">VIP - $50.00</option>
+                                                <option value="general">General - $25.000 ARS</option>
+                                                <option value="premium">Premium - $35.000 ARS</option>
+                                                <option value="vip">VIP - $50.000 ARS</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Información Personal -->
-                                <div class="mb-4">
-                                    <h4 class="text-primary mb-3">3. Información Personal</h4>
+                                <div class="form-section">
+                                    <h5>3. Información Personal</h5>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="customerName" class="form-label">Nombre Completo *</label>
@@ -165,8 +165,8 @@
                                 </div>
 
                                 <!-- Método de Pago -->
-                                <div class="mb-4">
-                                    <h4 class="text-primary mb-3">4. Método de Pago</h4>
+                                <div class="form-section">
+                                    <h5>4. Método de Pago</h5>
                                     <div class="mb-3">
                                         <label class="form-label">Selecciona tu método de pago *</label>
                                         <div class="row">
@@ -202,21 +202,21 @@
                                         <div class="row">
                                             <div class="col-md-8 mb-3">
                                                 <label for="cardNumber" class="form-label">Número de Tarjeta *</label>
-                                                <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                                                <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
                                             </div>
                                             <div class="col-md-4 mb-3">
                                                 <label for="cardExpiry" class="form-label">Fecha de Vencimiento *</label>
-                                                <input type="text" class="form-control" id="cardExpiry" name="cardExpiry" placeholder="MM/AA">
+                                                <input type="text" class="form-control" id="cardExpiry" name="cardExpiry" placeholder="MM/AA" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="cardName" class="form-label">Nombre en la Tarjeta *</label>
-                                                <input type="text" class="form-control" id="cardName" name="cardName">
+                                                <input type="text" class="form-control" id="cardName" name="cardName" required>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="cardCvv" class="form-label">CVV *</label>
-                                                <input type="text" class="form-control" id="cardCvv" name="cardCvv" placeholder="123">
+                                                <input type="text" class="form-control" id="cardCvv" name="cardCvv" placeholder="123" maxlength="3" required>
                                             </div>
                                         </div>
                                     </div>
@@ -257,16 +257,16 @@
                             
                             <div class="d-flex justify-content-between">
                                 <span>Subtotal:</span>
-                                <span id="subtotal">$0.00</span>
+                                <span id="subtotal">$0 ARS</span>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <span>IVA (16%):</span>
-                                <span id="tax">$0.00</span>
+                                <span>IVA (21%):</span>
+                                <span id="tax">$0 ARS</span>
                             </div>
                             <hr>
                             <div class="d-flex justify-content-between fw-bold fs-5">
                                 <span>Total:</span>
-                                <span id="total" class="text-primary">$0.00</span>
+                                <span id="total" class="text-primary">$0 ARS</span>
                             </div>
                             
                             <div class="mt-3">
@@ -379,6 +379,9 @@
                 });
             });
             
+            // Formateo automático de campos de tarjeta
+            initCardFormatting();
+            
             // Actualizar resumen cuando cambien los valores
             const formInputs = document.querySelectorAll('#purchaseForm input, #purchaseForm select');
             formInputs.forEach(input => {
@@ -388,6 +391,11 @@
             // Manejar envío del formulario
             document.getElementById('purchaseForm').addEventListener('submit', function(e) {
                 e.preventDefault();
+                
+                // Validar formulario usando la función global
+                if (!validateForm(this)) {
+                    return; // No continuar si hay errores
+                }
                 
                 // Recopilar todos los datos del formulario
                 const formData = {
@@ -447,15 +455,16 @@
             const quantity = parseInt(document.getElementById('quantity').value) || 0;
             const seatType = document.getElementById('seat-type').value;
             
+            // Solo mostrar precios si se han seleccionado todos los campos necesarios
             if (spectacleSelect.value && quantity > 0 && seatType) {
                 const pricePerTicket = getSeatPrice();
                 const subtotal = quantity * pricePerTicket;
-                const tax = subtotal * 0.16;
+                const tax = subtotal * 0.21; // 21% IVA argentino
                 const total = subtotal + tax;
                 
-                document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-                document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
-                document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+                document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString('es-AR')} ARS`;
+                document.getElementById('tax').textContent = `$${tax.toLocaleString('es-AR')} ARS`;
+                document.getElementById('total').textContent = `$${total.toLocaleString('es-AR')} ARS`;
                 
                 // Actualizar resumen
                 const summary = document.getElementById('purchase-summary');
@@ -467,18 +476,40 @@
                         <small class="text-muted">${quantity} entrada(s) - ${seatType}</small>
                     </div>
                     <div class="mb-1">
-                        <small class="text-muted">Precio por entrada: $${pricePerTicket.toFixed(2)}</small>
+                        <small class="text-muted">Precio por entrada: $${pricePerTicket.toLocaleString('es-AR')} ARS</small>
                     </div>
                 `;
+            } else {
+                // Si no se han completado todos los campos, mostrar mensaje de selección
+                document.getElementById('subtotal').textContent = '$0 ARS';
+                document.getElementById('tax').textContent = '$0 ARS';
+                document.getElementById('total').textContent = '$0 ARS';
+                
+                const summary = document.getElementById('purchase-summary');
+                if (spectacleSelect.value && quantity > 0 && !seatType) {
+                    summary.innerHTML = `
+                        <div class="mb-2">
+                            <strong>${spectacleSelect.selectedOptions[0].text}</strong>
+                        </div>
+                        <div class="mb-1">
+                            <small class="text-muted">${quantity} entrada(s)</small>
+                        </div>
+                        <div class="mb-1">
+                            <small class="text-warning">Selecciona el tipo de asiento para ver el precio</small>
+                        </div>
+                    `;
+                } else {
+                    summary.innerHTML = '<p class="text-muted">Selecciona un espectáculo para ver el resumen</p>';
+                }
             }
         }
         
         function getSeatPrice() {
             const seatType = document.getElementById('seat-type').value;
             const prices = {
-                'general': 25.00,
-                'premium': 35.00,
-                'vip': 50.00
+                'general': 25000,
+                'premium': 35000,
+                'vip': 50000
             };
             return prices[seatType] || 0;
         }
@@ -507,6 +538,76 @@
                     // Trigger change event para actualizar el resumen
                     spectacleSelect.dispatchEvent(new Event('change'));
                 }
+            }
+        }
+        
+        // Formateo automático de campos de tarjeta
+        function initCardFormatting() {
+            const cardNumberInput = document.getElementById('cardNumber');
+            const cardExpiryInput = document.getElementById('cardExpiry');
+            
+            // Formateo del número de tarjeta (cada 4 dígitos)
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    
+                    // Limitar a 19 caracteres (16 dígitos + 3 espacios)
+                    if (formattedValue.length > 19) {
+                        formattedValue = formattedValue.substring(0, 19);
+                    }
+                    
+                    e.target.value = formattedValue;
+                });
+                
+                // Permitir solo números y espacios
+                cardNumberInput.addEventListener('keypress', function(e) {
+                    if (!/[0-9\s]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                        e.preventDefault();
+                    }
+                });
+            }
+            
+            // Formateo de la fecha de vencimiento (MM/AA)
+            if (cardExpiryInput) {
+                cardExpiryInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    if (value.length >= 2) {
+                        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                    }
+                    
+                    e.target.value = value;
+                });
+                
+                // Permitir solo números y "/"
+                cardExpiryInput.addEventListener('keypress', function(e) {
+                    if (!/[0-9\/]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                        e.preventDefault();
+                    }
+                });
+            }
+            
+            // Formateo del CVV (solo 3 números)
+            const cardCvvInput = document.getElementById('cardCvv');
+            if (cardCvvInput) {
+                cardCvvInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    // Limitar a 3 dígitos
+                    if (value.length > 3) {
+                        value = value.substring(0, 3);
+                    }
+                    
+                    e.target.value = value;
+                });
+                
+                // Permitir solo números
+                cardCvvInput.addEventListener('keypress', function(e) {
+                    if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                        e.preventDefault();
+                    }
+                });
             }
         }
     </script>

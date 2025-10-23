@@ -93,7 +93,7 @@
                                     <p><strong>Número de Orden:</strong> <span id="order-number">#TP-2024-001234</span></p>
                                     <p><strong>Cantidad:</strong> <span id="ticket-quantity">2 entradas</span></p>
                                     <p><strong>Tipo de Asiento:</strong> <span id="seat-type">Premium</span></p>
-                                    <p><strong>Total Pagado:</strong> <span id="total-paid" class="text-success fw-bold">$81.20</span></p>
+                                    <p><strong>Total Pagado:</strong> <span id="total-paid" class="text-success fw-bold">$81.200 ARS</span></p>
                                 </div>
                             </div>
                             
@@ -216,7 +216,7 @@
                             </a>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <a href="contacto.html" class="btn btn-outline-primary w-100">
+                            <a href="contacto.html" class="btn btn-primary-custom w-100">
                                 <i class="fas fa-phone"></i> Contactar Soporte
                             </a>
                         </div>
@@ -233,7 +233,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="spectacle-card">
-                        <img src="https://via.placeholder.com/400x200/8B0000/FFFFFF?text=Macbeth" alt="Macbeth" class="spectacle-image">
+                        <img src="images/Macbeth.webp" alt="Macbeth" class="spectacle-image">
                         <div class="spectacle-content">
                             <h3 class="spectacle-title">Macbeth</h3>
                             <p class="spectacle-theme">Tragedia Clásica</p>
@@ -244,7 +244,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="spectacle-card">
-                        <img src="https://via.placeholder.com/400x200/DAA520/000000?text=El+Fantasma+de+la+Opera" alt="El Fantasma de la Ópera" class="spectacle-image">
+                        <img src="images/El Fantasma de la Ópera.webp" alt="El Fantasma de la Ópera" class="spectacle-image">
                         <div class="spectacle-content">
                             <h3 class="spectacle-title">El Fantasma de la Ópera</h3>
                             <p class="spectacle-theme">Musical Gótico</p>
@@ -255,7 +255,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="spectacle-card">
-                        <img src="https://via.placeholder.com/400x200/000000/FFFFFF?text=West+Side+Story" alt="West Side Story" class="spectacle-image">
+                        <img src="images/West Side Story.jpg" alt="West Side Story" class="spectacle-image">
                         <div class="spectacle-content">
                             <h3 class="spectacle-title">West Side Story</h3>
                             <p class="spectacle-theme">Musical Romántico</p>
@@ -329,7 +329,7 @@
                 document.getElementById('order-number').textContent = '#' + orderNumber;
                 document.getElementById('ticket-quantity').textContent = purchaseData.quantity + ' entrada(s)';
                 document.getElementById('seat-type').textContent = getSeatTypeName(purchaseData.seatType);
-                document.getElementById('total-paid').textContent = '$' + purchaseData.pricing.total.toFixed(2);
+                document.getElementById('total-paid').textContent = '$' + purchaseData.pricing.total.toLocaleString('es-AR') + ' ARS';
                 
                 // Mostrar información del cliente
                 document.getElementById('customer-name').textContent = purchaseData.customer.name;
