@@ -420,9 +420,9 @@
                         cardExpiry: document.getElementById('cardExpiry').value
                     },
                     pricing: {
-                        subtotal: parseFloat(document.getElementById('subtotal').textContent.replace('$', '')),
-                        tax: parseFloat(document.getElementById('tax').textContent.replace('$', '')),
-                        total: parseFloat(document.getElementById('total').textContent.replace('$', ''))
+                        subtotal: parseFloat(document.getElementById('subtotal').textContent.replace(/[$ ARS]/g, '')),
+                        tax: parseFloat(document.getElementById('tax').textContent.replace(/[$ ARS]/g, '')),
+                        total: parseFloat(document.getElementById('total').textContent.replace(/[$ ARS]/g, ''))
                     },
                     orderDate: new Date().toISOString()
                 };
