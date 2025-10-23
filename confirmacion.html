@@ -329,7 +329,7 @@
                 document.getElementById('order-number').textContent = '#' + orderNumber;
                 document.getElementById('ticket-quantity').textContent = purchaseData.quantity + ' entrada(s)';
                 document.getElementById('seat-type').textContent = getSeatTypeName(purchaseData.seatType);
-                document.getElementById('total-paid').textContent = '$' + purchaseData.pricing.total.toLocaleString('es-AR') + ' ARS';
+                document.getElementById('total-paid').textContent = '$' + purchaseData.pricing.total.toLocaleString('es-AR', {minimumFractionDigits: 0, maximumFractionDigits: 0}) + ' ARS';
                 
                 // Mostrar información del cliente
                 document.getElementById('customer-name').textContent = purchaseData.customer.name;

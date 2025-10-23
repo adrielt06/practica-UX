@@ -463,9 +463,9 @@
                 const tax = subtotal * 0.21; // 21% IVA argentino
                 const total = subtotal + tax;
                 
-                document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString('es-AR')} ARS`;
-                document.getElementById('tax').textContent = `$${tax.toLocaleString('es-AR')} ARS`;
-                document.getElementById('total').textContent = `$${total.toLocaleString('es-AR')} ARS`;
+                document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString('es-AR', {minimumFractionDigits: 0, maximumFractionDigits: 0})} ARS`;
+                document.getElementById('tax').textContent = `$${tax.toLocaleString('es-AR', {minimumFractionDigits: 0, maximumFractionDigits: 0})} ARS`;
+                document.getElementById('total').textContent = `$${total.toLocaleString('es-AR', {minimumFractionDigits: 0, maximumFractionDigits: 0})} ARS`;
                 
                 // Actualizar resumen
                 const summary = document.getElementById('purchase-summary');
@@ -477,7 +477,7 @@
                         <small class="text-muted">${quantity} entrada(s) - ${seatType}</small>
                     </div>
                     <div class="mb-1">
-                        <small class="text-muted">Precio por entrada: $${pricePerTicket.toLocaleString('es-AR')} ARS</small>
+                        <small class="text-muted">Precio por entrada: $${pricePerTicket.toLocaleString('es-AR', {minimumFractionDigits: 0, maximumFractionDigits: 0})} ARS</small>
                     </div>
                 `;
             } else {
