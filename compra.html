@@ -435,10 +435,11 @@
                     gtag('event', 'purchase', {
                         transaction_id: 'TXN_' + Date.now(),
                         value: formData.pricing.total,
-                        currency: 'USD',
+                        currency: 'ARS',
                         items: [{
                             item_id: formData.spectacle.id,
                             item_name: formData.spectacle.name,
+                            item_variant: formData.seatType,
                             quantity: formData.quantity,
                             price: getSeatPrice()
                         }]

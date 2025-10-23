@@ -348,11 +348,16 @@
                 
                 // Track purchase completion con datos reales
                 if (typeof gtag !== 'undefined') {
-                    gtag('event', 'purchase_completed', {
-                        event_category: 'ecommerce',
-                        event_label: 'ticket_purchase',
+                    gtag('event', 'purchase', {
+                        transaction_id: orderNumber,
                         value: purchaseData.pricing.total,
-                        transaction_id: orderNumber
+                        currency: 'ARS',
+                        items: [{
+                            item_name: purchaseData.spectacle.name,
+                            item_variant: purchaseData.seatType,
+                            quantity: purchaseData.quantity,
+                            price: purchaseData.pricing.subtotal / purchaseData.quantity
+                        }]
                     });
                 }
                 

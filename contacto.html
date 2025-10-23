@@ -384,9 +384,9 @@
             
             // Track contact form submission
             if (typeof gtag !== 'undefined') {
-                gtag('event', 'contact_form_submit', {
-                    event_category: 'engagement',
-                    event_label: 'contact_form'
+                gtag('event', 'generate_lead', {
+                    value: 0,
+                    currency: 'ARS'
                 });
             }
             

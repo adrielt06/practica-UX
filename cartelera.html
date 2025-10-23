@@ -352,10 +352,12 @@
                     
                     // Track purchase intent
                     if (typeof gtag !== 'undefined') {
-                        gtag('event', 'purchase_intent', {
-                            spectacle_id: spectacleId,
-                            spectacle_name: spectacleName,
-                            page: 'cartelera'
+                        gtag('event', 'view_item', {
+                            item_name: spectacleName,
+                            item_category: 'spectacle',
+                            item_id: spectacleId,
+                            value: 0,
+                            currency: 'ARS'
                         });
                     }
                     

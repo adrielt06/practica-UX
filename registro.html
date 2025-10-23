@@ -316,9 +316,8 @@
             
             // Track successful registration
             if (typeof gtag !== 'undefined') {
-                gtag('event', 'registration_success', {
-                    event_category: 'engagement',
-                    event_label: 'user_registration'
+                gtag('event', 'sign_up', {
+                    method: 'email'
                 });
             }
             
