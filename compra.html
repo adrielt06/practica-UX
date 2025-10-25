@@ -430,10 +430,9 @@
                 // Guardar datos en localStorage
                 localStorage.setItem('purchaseData', JSON.stringify(formData));
                 
-                // Track purchase completion
+                // Track purchase intent (no completion yet)
                 if (typeof gtag !== 'undefined') {
-                    gtag('event', 'purchase', {
-                        transaction_id: 'TXN_' + Date.now(),
+                    gtag('event', 'begin_checkout', {
                         value: formData.pricing.total,
                         currency: 'ARS',
                         items: [{
