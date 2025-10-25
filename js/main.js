@@ -19,7 +19,22 @@ function initGoogleAnalytics() {
       gtag('js', new Date());
       gtag('config', GA_MEASUREMENT_ID);
       window.gtag = gtag;
+      
+      // Track first visit
+      trackFirstVisit();
     };
+  }
+}
+
+// Track first visit
+function trackFirstVisit() {
+  const isFirstVisit = !localStorage.getItem('hasVisited');
+  if (isFirstVisit) {
+    trackEvent('first_visit', {
+      page: window.location.pathname,
+      timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('hasVisited', 'true');
   }
 }
 
@@ -34,6 +49,12 @@ function trackEvent(eventName, parameters = {}) {
 document.addEventListener('DOMContentLoaded', function() {
   // Inicializar Google Analytics
   initGoogleAnalytics();
+  
+  // Track page view
+  trackPageView();
+  
+  // Track scroll events
+  initScrollTracking();
   
   // Smooth scroll para enlaces internos
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -328,6 +349,54 @@ function initPurchaseCalculations() {
     quantityInput.addEventListener('input', calculateTotal);
     calculateTotal(); // Calcular inicial
   }
+}
+
+// Track page view
+function trackPageView() {
+  trackEvent('page_view', {
+    page_title: document.title,
+    page_location: window.location.href,
+    page_path: window.location.pathname
+  });
+}
+
+// Track scroll events
+function initScrollTracking() {
+  let scrollTimeout;
+  let lastScrollY = 0;
+  
+  window.addEventListener('scroll', function() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
+      const currentScrollY = window.scrollY;
+      const scrollPercentage = Math.round((currentScrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+      
+      // Track scroll milestones
+      if (scrollPercentage >= 25 && lastScrollY < 25) {
+        trackEvent('scroll', {
+          scroll_depth: '25%',
+          page: window.location.pathname
+        });
+      } else if (scrollPercentage >= 50 && lastScrollY < 50) {
+        trackEvent('scroll', {
+          scroll_depth: '50%',
+          page: window.location.pathname
+        });
+      } else if (scrollPercentage >= 75 && lastScrollY < 75) {
+        trackEvent('scroll', {
+          scroll_depth: '75%',
+          page: window.location.pathname
+        });
+      } else if (scrollPercentage >= 90 && lastScrollY < 90) {
+        trackEvent('scroll', {
+          scroll_depth: '90%',
+          page: window.location.pathname
+        });
+      }
+      
+      lastScrollY = scrollPercentage;
+    }, 150);
+  });
 }
 
 // Inicializar todo cuando el DOM esté listo
